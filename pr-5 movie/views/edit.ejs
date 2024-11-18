@@ -1,0 +1,227 @@
+<html>
+
+<head>
+  <title>DevFlix</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+</head>
+
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;500;600&display=swap");
+
+body {
+  font-family: "Rubik", sans-serif;
+  text-align: center;
+  background-color: #2b2d42;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+img {
+  height: 300px;
+  width: 200px;
+  border-radius: 5px;
+}
+
+img:hover {
+  border-top: 2px solid #d90429;
+  border-right: 2px solid #d90429;
+}
+
+h1,
+h3,
+p {
+  color: #edf2f4;
+}
+
+a {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 230px;
+  text-decoration: none;
+}
+
+input {
+  background-color: #8d99ae;
+  border: none;
+  padding: 14px;
+  color: #edf2f4;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 16px;
+  font-family: "Rubik", sans-serif;
+  margin-bottom: 6px;
+  max-width: 400px;
+}
+
+input::placeholder {
+  color: #edf2f4;
+  opacity: 0.5;
+}
+
+input:focus {
+  border-top: 2px solid #edf2f4;
+  border-right: 2px solid #edf2f4;
+  outline: none;
+}
+
+button {
+  margin-top: 10px;
+  border: none;
+  padding: 14px;
+  cursor: pointer;
+  background-color: #d90429;
+  color: #edf2f4;
+ 
+  font-weight: 500;
+  font-size: 16px;
+  font-family: "Rubik", sans-serif;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 400px;
+}
+
+button:hover {
+  background-color: #d90429;
+  border-top: 2px solid #edf2f4;
+  border-right: 2px solid #edf2f4;
+}
+
+i {
+  color: #d90429;
+}
+
+.film-item {
+  display: inline-block;
+  position: relative;
+}
+
+.form,
+.form-btns {
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.form {
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.form-btns {
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+#add-movie {
+  margin-left: 10px;
+}
+
+#movie-list {
+  margin-top: 38px;
+  margin-bottom: 32px;
+}
+
+.fa-random {
+  color: #edf2f4;
+  margin-left: 5px;
+}
+
+input:required:valid {
+  border-color: green;
+}
+
+input:invalid {
+  border-color: #d90429;
+}
+
+input:required:focus:valid {
+  background: url("https://assets.digitalocean.com/labs/icons/hand-thumbs-up.svg")
+    no-repeat 95% 50% #8d99ae;
+  background-size: 25px;
+}
+
+input:focus:invalid {
+  background: url("https://assets.digitalocean.com/labs/icons/exclamation-triangle-fill.svg")
+    no-repeat 95% 50% #8d99ae;
+  background-size: 25px;
+}
+
+#validation-msg {
+  margin-top: 0;
+  font-size: 15px;
+}
+
+.btn-disabled {
+  background-color: #8d99ae;
+  cursor: default;
+}
+
+.btn-disabled:hover {
+  background-color: #8d99ae;
+  cursor: default;
+  border: none;
+} 
+
+.delete-movie {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.delete-movie:hover > i {
+  color: #edf2f4;
+} 
+.button {
+    margin-top: 10px;
+    border: none;
+    padding: 14px;
+    cursor: pointer;
+    background-color: #d90429;
+    color: #edf2f4;
+    font-weight: 500;
+    font-size: 16px;
+    font-family: "Rubik", sans-serif;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 400px;
+}
+</style>
+
+<body>
+
+  <h1>
+    <i class="fas fa-video"></i>
+    DevFlix
+  </h1>
+  <h3>Best movies about programmers & tech universe</h3>
+  <div class="form">
+    <form action="/update" method="post" enctype="multipart/form-data">
+      <h3>Add your own favorite movie to the list:</h3>
+  
+      <input type="hidden" name="editid" value="<%= singal?.id || '' %>">
+      <input type="text" id="movie-title" placeholder="Movie name" name="name" value="<%= singal?.name || '' %>" required />
+      <input type="text" id="movie-link" placeholder="Movie description" value="<%= singal?.desc || '' %>" name="desc" required />
+      <input type="text" id="movie-title" placeholder="Movie price" value="<%= singal?.price || '' %>" name="price" required />
+      <input type="file" id="movie-img" name="image" />
+  
+      <img src="<%= singal?.image || '/default-image-path.jpg' %>" width="100px" height="100px" alt="Movie Image" />
+  
+      <div class="form-btns">
+        <button id="add-random" type="submit">
+          Submit <i class="fas fa-random"></i>
+        </button>
+      </div>
+  
+      <div id="validation-msg"></div>
+      <div id="movie-list"></div>
+    </form>
+  </div>
+  
+</body>
+
+</html>
