@@ -3,7 +3,7 @@ const express = require('express');
 
 const routes = express.Router(); 
 
-const { loginpage, resiterpage, Resiterusers, loginuseres, dashbord,  addblogpage, addblogusers, viewblog, deleterecord, editrecord, upblog,logout} = require('../controller/controller');
+const { loginpage, resiterpage, Resiterusers, loginuseres, dashbord,  addblogpage, addblogusers, viewblog, deleterecord, editrecord, upblog,logout, Read} = require('../controller/controller');
 
 
 const multer=require('multer')
@@ -31,5 +31,6 @@ routes.get('/delete',deleterecord);
 routes.get('/edit',editrecord); 
 routes.get('/logout',logout); 
 routes.post('/up',upload,upblog)
+routes.get('/Read',Read); 
 
 module.exports = routes;

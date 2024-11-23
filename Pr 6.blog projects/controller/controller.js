@@ -1,3 +1,4 @@
+const { log } = require('console')
 const usermodels = require('../models/usermodels')
 const blogmodels = require('../models/view')
 const fs = require('fs')
@@ -173,13 +174,32 @@ const logout=(req, res)=>{
     return res.clearCookie('auth').redirect('/');
 
 }
+const Read= async(req, res)=>{
 
+    try {
+        console.log(req.query.id);
+
+        let id=req.query.id
+        const users= await  blogmodels.findById(id)
+
+        console.log(users);
+        
+        return res.render('readmoreblog',{
+users
+        })
+        
+    } catch (error) {
+        console.log(error);
+        
+    }
+    
+}
 
 module.exports = {
     resiterpage,
     loginpage,
     Resiterusers,
     loginuseres,
-    addblogpage, addblogusers, viewblog, deleterecord, editrecord, upblog,logout
+    addblogpage, addblogusers, viewblog, deleterecord, editrecord, upblog,logout,Read
 
 }
