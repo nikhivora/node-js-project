@@ -3,7 +3,7 @@ const express = require('express');
 
 const routes = express.Router(); 
 
-const { loginpage, resiterpage, Resiterusers, loginuseres, dashbord,  addblogpage, addblogusers, viewblog, deleterecord, editrecord, upblog,logout, Read} = require('../controller/controller');
+const { loginpage, resiterpage, Resiterusers, loginuseres,  addblogpage, addblogusers, viewblog, deleterecord, editrecord, upblog,logout, Read} = require('../controller/controller');
 
 
 const multer=require('multer');
@@ -27,7 +27,7 @@ routes.post('/insert',Resiterusers)
 routes.post('/login',passport.authenticate('local',{failureRedirect:'/'}),loginuseres)
 routes.get('/addblogpage',addblogpage); 
 routes.post('/addblog',upload,addblogusers)
-routes.get('/viewblog',viewblog); 
+routes.get('/viewblog',passport.checkUser,viewblog); 
 routes.get('/delete',deleterecord); 
 routes.get('/edit',editrecord); 
 routes.get('/logout',logout); 

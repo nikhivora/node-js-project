@@ -7,7 +7,11 @@ const resiterpage = (req, res) => {
 
 }
 const loginpage = (req, res) => {
-        return res.render('login');
+    if (res.locals.users) {
+        return res.redirect('/viewblog')
+    }
+ 
+    return res.render('login');
 }
 
 const Resiterusers = async (req, res) => {
@@ -21,7 +25,7 @@ const Resiterusers = async (req, res) => {
         return res.redirect('/')
 
     } catch (error) {
-        console.log(err);
+        console.log(error);
         return false
     }
 
@@ -30,7 +34,7 @@ const Resiterusers = async (req, res) => {
 const loginuseres = async (req, res) => {
 
     try {
-    
+
         return res.redirect('/viewblog')
     } catch (error) {
         console.log(error);
@@ -66,15 +70,15 @@ const addblogusers = async (req, res) => {
 const viewblog = async (req, res) => {
 
     try {
-      
-          
-            let users = await blogmodels.find({})
+
+
+        let users = await blogmodels.find({})
         return res.render('viewblog', {
             users
         })
-    
-    
-       
+
+
+
 
     } catch (error) {
         console.log(error);
@@ -154,28 +158,35 @@ const upblog = async (req, res) => {
 
 }
 
-const logout=(req, res)=>{
+const logout = (req, res) => {
 
+    req.logout((err) => {
+        if (err) {
+            console.log(err);
+            return false;
+        }
+        return res.redirect('/');
+    });
 }
-const Read= async(req, res)=>{
+const Read = async (req, res) => {
 
     try {
         console.log(req.query.id);
 
-        let id=req.query.id
-        const users= await  blogmodels.findById(id)
+        let id = req.query.id
+        const users = await blogmodels.findById(id)
 
         console.log(users);
-        
-        return res.render('readmoreblog',{
-users
+
+        return res.render('readmoreblog', {
+            users
         })
-        
+
     } catch (error) {
         console.log(error);
-        
+
     }
-    
+
 }
 
 module.exports = {
@@ -183,6 +194,6 @@ module.exports = {
     loginpage,
     Resiterusers,
     loginuseres,
-    addblogpage, addblogusers, viewblog, deleterecord, editrecord, upblog,logout,Read
+    addblogpage, addblogusers, viewblog, deleterecord, editrecord, upblog, logout, Read
 
 }

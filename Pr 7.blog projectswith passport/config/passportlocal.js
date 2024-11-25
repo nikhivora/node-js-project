@@ -8,8 +8,6 @@ const usersmodels=require('../models/usermodels')
 passport.use(new passportlocal({
     usernameField: 'email',
 }, async (email, password, done) => {
-
-    console.log(email);
     
     try {
         let user = await usersmodels.findOne({ email: email });
@@ -23,6 +21,35 @@ passport.use(new passportlocal({
         return done(null, false);
     }
 }))
+
+passport.serializeUser((user,done)=>{
+    console.log(user);
+    
+    return done(null,user.id)
+    
+})
+passport.deserializeUser(async (id, done) => {
+    try {
+        const user = await usersmodels.findById(id);
+        console.log(user);
+     
+        done(null, user); 
+    } catch (err) {
+        done(err, null);
+    }
+});
+passport.checkUser = (req, res, next) => {
+    if (!req.isAuthenticated()) {
+        return res.redirect('/')
+    }
+    return next();
+}
+passport.setUser = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        res.locals.users = req.user
+    }
+    return next();
+}
 
 
 module.exports=passport
