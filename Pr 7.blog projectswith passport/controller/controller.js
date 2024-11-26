@@ -166,7 +166,7 @@ const logout = (req, res) => {
             return false;
         }
         return res.redirect('/');
-    });
+    });``
 }
 const Read = async (req, res) => {
 
