@@ -8,6 +8,10 @@ app.set('view engine', 'ejs')
 
 const path = require('path')
 
+const cookieparser=require('cookie-parser')
+
+app.use(cookieparser())
+
 
 app.use('/', express.static(path.join(__dirname, '/public')))
 

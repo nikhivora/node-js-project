@@ -1,5 +1,5 @@
 const express=require('express')
-const { registerpage, registerusers, loginpage, dashpage, loginusers, logout, emailverifition, email } = require('../controller/authcontroller')
+const { registerpage, registerusers, loginpage, dashpage, loginusers, logout, emailverifition, email, otppage, otppost, newpass, newpasspage,  } = require('../controller/authcontroller')
 
 const routes=express.Router()
 
@@ -13,6 +13,12 @@ routes.get('/dash',passport.checkUser,dashpage)
 routes.get('/logout',logout)
 routes.get('/emailverifition', emailverifition)
 routes.post('/email', email)
+routes.get('/otp',otppage)
+routes.post('/otppost', otppost)
+routes.get('/newpasspege',newpasspage)
+routes.post('/newpass', newpass)
+
+
 
 
 module.exports=routes
