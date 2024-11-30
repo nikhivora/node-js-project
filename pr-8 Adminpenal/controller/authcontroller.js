@@ -138,6 +138,31 @@ const newpass = async (req, res) => {
     return res.redirect('/newpasspege')
   }
 }
+
+const viewpropage=(req ,res)=>{
+return res. render('viewpro')
+}
+
+const viewprofile= async(req , res)=>{
+
+  try {
+
+    console.log(req.body);
+    
+    
+
+    console.log(req.body);
+    
+  } catch (error) {
+
+console.log(error);
+
+return false
+
+    
+
+  }
+}
 module.exports = {
-  registerpage, registerusers, loginpage, dashpage, loginusers, logout, emailverifition, email, otppage, otppost, newpass, newpasspage
+  registerpage, registerusers, loginpage, dashpage, loginusers, logout, emailverifition, email, otppage, otppost, newpass, newpasspage,viewpropage,viewprofile
 }

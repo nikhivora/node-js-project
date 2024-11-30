@@ -1,5 +1,5 @@
 const express=require('express')
-const { registerpage, registerusers, loginpage, dashpage, loginusers, logout, emailverifition, email, otppage, otppost, newpass, newpasspage,  } = require('../controller/authcontroller')
+const { registerpage, registerusers, loginpage, dashpage, loginusers, logout, emailverifition, email, otppage, otppost, newpass, newpasspage, viewpropage, viewprofile,  } = require('../controller/authcontroller')
 
 const routes=express.Router()
 
@@ -18,6 +18,12 @@ routes.post('/otppost', otppost)
 routes.get('/newpasspege',newpasspage)
 routes.post('/newpass', newpass)
 
+
+// viewpropage
+
+routes.get('/viewpropage',viewpropage)
+
+routes.post('/viewprofile',viewprofile)
 
 
 
