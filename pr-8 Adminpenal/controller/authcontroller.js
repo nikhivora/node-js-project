@@ -55,7 +55,7 @@ const email = async (req, res) => {
       service: 'gmail',
       auth: {
         user: 'voranikhil121@gmail.com',
-        pass: 'urch xqtc wzfi wvcp'
+        pass: 'zftf hknf sclf dvya~'
       }
     });
 
@@ -139,30 +139,58 @@ const newpass = async (req, res) => {
   }
 }
 
-const viewpropage=(req ,res)=>{
-return res. render('viewpro')
+const viewpropage = (req, res) => {
+  return res.render('viewpro')
 }
 
-const viewprofile= async(req , res)=>{
+const viewprofile = async (req, res) => {
 
   try {
 
-    console.log(req.body);
-    
-    
+    const { name, email, password } = req.body;
 
-    console.log(req.body);
-    
+    await usermodels.findOneAndUpdate({ email: email }, {
+      name: name,
+      password: password
+    })
+    return res.redirect('/dash')
+
   } catch (error) {
 
-console.log(error);
-
-return false
-
-    
+    console.log(error);
+    return false
 
   }
 }
+
+const changepass=(req, res)=>{
+  return res.render('changepass')
+}
+
+
+const changepassword= async(req, res)=>{
+  try {
+    const email=res.locals.users.email
+    const {oldpass,newpassword}=req.body
+
+if (oldpass== res.locals.users.password) {
+  await usermodels.findOneAndUpdate({email:email},{
+    password:newpassword
+  })
+  console.log("password update");
+  return res.redirect('/dash')
+  
+} else {
+  console.log("old password is worong");
+  return res.redirect('/dash')
+  
+}      
+   
+  } catch (error) {
+    console.log(error);
+  }
+}
 module.exports = {
-  registerpage, registerusers, loginpage, dashpage, loginusers, logout, emailverifition, email, otppage, otppost, newpass, newpasspage,viewpropage,viewprofile
+  registerpage, registerusers, loginpage, dashpage, loginusers, logout, emailverifition, email, otppage, otppost, newpass, newpasspage, viewpropage, viewprofile
+  ,changepass,changepassword
 }

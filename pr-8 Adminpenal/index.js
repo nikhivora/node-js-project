@@ -13,7 +13,6 @@ const cookieparser=require('cookie-parser')
 app.use(cookieparser())
 
 
-app.use('/', express.static(path.join(__dirname, '/public')))
 
 constdb = require('./config/db')
 const passport = require('passport')
@@ -37,6 +36,7 @@ app.use(passport.session())
 app.use(passport.setUser);
 app.use(express.urlencoded())
 app.use('/', require('./routes/indexroutes'))
+app.use('/', express.static(path.join(__dirname, '/public')))
 app.listen(port, (err) => {
     if (err) {
         console.log(err);
