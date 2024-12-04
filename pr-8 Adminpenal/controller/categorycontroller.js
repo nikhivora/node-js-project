@@ -34,6 +34,50 @@ const viewcategotypage= async(req, res)=>{
         
     }
 }
+
+const categorydelete=async  (req,res)=>{
+     const id=req.query.id;
+
+    await categorymodels.findByIdAndDelete(id);
+    return res.redirect('/category/viewcategotypage')
+}
+
+const categoryedit = async (req, res)=>{
+    try {
+        const id=req.query.id;
+        let single = await categorymodels.findById(id);
+        
+        return res.render('category/editcetegory',{
+            single
+        })
+        
+    } catch (error) {
+        console.log(error)
+        return false
+        
+    }
+    
+    
+    
+}
+
+const Categoryupdate= async(req, res)=>{
+    try {
+        const {category,editid}=req.body
+        
+        await categorymodels.findByIdAndUpdate(editid,{
+            category:category
+        })
+        
+        return res.redirect('/category/viewcategotypage')
+        
+        
+
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
 module.exports={
-    categoryPage,addCategory,viewcategotypage
+    categoryPage,addCategory,viewcategotypage,categorydelete,categoryedit,Categoryupdate
 }

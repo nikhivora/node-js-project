@@ -2,10 +2,15 @@ const express=require('express')
 
 const routes=express.Router()
 
-const { categoryPage, addCategory, viewcategotypage } = require('../controller/categorycontroller')
+const { categoryPage, addCategory, viewcategotypage, categorydelete, categoryedit, Categoryupdate } = require('../controller/categorycontroller')
 
-routes.get('/categoryPage',categoryPage)
-routes.post('/addCategory',addCategory)
+
+const passport=require('passport')
+
+routes.get('/categoryPage',passport.checkUser,categoryPage)
+routes.post('/addCategory', passport.checkUser,addCategory)
 routes.get('/viewcategotypage',viewcategotypage)
-
+routes.get('/categorydelete',categorydelete)
+routes.get('/categoryedit',categoryedit)
+routes.post('/editCategory',Categoryupdate)
  module.exports=routes

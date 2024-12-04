@@ -53,7 +53,10 @@
                     <tr>
                         <td><%= ++i %></td>
                         <td><%= val.category %></td>
-                        <td></td>
+                        <td>
+                          <a href="/category/categorydelete?id=<%=val.id%>">delete</a> ||
+                          <a href="/category/categoryedit?id=<%=val.id%>">Edit</a>
+                        </td>
                     </tr>
                 <%   }) %>
               
