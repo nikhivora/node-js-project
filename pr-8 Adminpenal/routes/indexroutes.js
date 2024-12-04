@@ -4,5 +4,6 @@ const routes=express.Router()
 
 routes.use('/', require('../routes/authrotes'))
 routes.use('/category', require('./categoryroutes'))
+routes.use('/subcategory', require('./subcatrgoryroutes'))
 
 module.exports=routes

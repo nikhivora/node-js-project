@@ -6,9 +6,13 @@ const userschama=mongoose.Schema({
         type:String,
         require:true
     },
+    status:{
+        type:String,
+       default:'deactive'
+    },
    
 })
 
-const user=mongoose.model('category',userschama)
+const category=mongoose.model('category',userschama)
 
-module.exports=user
+module.exports=category

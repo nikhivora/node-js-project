@@ -78,6 +78,35 @@ const Categoryupdate= async(req, res)=>{
         
     }
 }
+
+
+
+const changeStatus = async (req,res)=>{
+
+    try {
+        
+        const id =req.query.id;
+        const st=req.query.status;
+        
+        if (st=="active") {
+            
+            await categorymodels.findByIdAndUpdate(id,{
+                status:"deactive"
+            })
+            return res.redirect('/category/viewcategotypage')
+        } else {
+            await categorymodels.findByIdAndUpdate(id,{
+                status:"active"
+            })
+            return res.redirect('/category/viewcategotypage')
+        }
+    } catch (error) {
+        console.log(error);
+        
+    }
+
+}
+
 module.exports={
-    categoryPage,addCategory,viewcategotypage,categorydelete,categoryedit,Categoryupdate
+    categoryPage,addCategory,viewcategotypage,categorydelete,categoryedit,Categoryupdate,changeStatus
 }

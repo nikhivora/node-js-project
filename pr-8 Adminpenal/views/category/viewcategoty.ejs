@@ -46,6 +46,7 @@
                 </th>
                 
                 <th scope="col">action</th>
+                <th scope="col">Status</th>
               </tr>
             </thead>
             <tbody>    <% users.map((val, i)=>{%>
@@ -56,6 +57,16 @@
                         <td>
                           <a href="/category/categorydelete?id=<%=val.id%>">delete</a> ||
                           <a href="/category/categoryedit?id=<%=val.id%>">Edit</a>
+                        </td>
+
+                        <td>
+                          <% if(val.status == "active"){%>
+                            <a href="/category/changeStatus?id=<%= val.id%>&status=<%= val.status %>" class=" btn btn-success"> active  </a>
+                            <% }else{%>
+                              <a href="/category/changeStatus?id=<%= val.id%>&status=<%= val.status %>" class=" btn btn-warning"> deactive  </a>
+
+                          <% }%>
+                      
                         </td>
                     </tr>
                 <%   }) %>
