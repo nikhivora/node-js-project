@@ -37,7 +37,6 @@ const subaddCategory=async(req, res)=>{
 const viewsubcategotypage=async (req, res)=>{
     try {
         const subcategory=await subcategorymodels.find({}).populate('categoryid')
-        console.log(subcategory);
         return res.render('subcategory/viewsubcategory',{
             subcategory
         })
