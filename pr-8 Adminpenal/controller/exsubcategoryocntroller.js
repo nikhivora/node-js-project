@@ -50,16 +50,35 @@ const exsubaddCategory=async(req, res)=>{
 const exsubcategoryedit=async(req, res)=>{
 try {
     const id=req.query.id
-    // const category=await categorymodels.find({})
-    // const subcategory=await subcategorymodels.find({})
-    const single=await exsubcategorymodels.find({id}).populate('categoryid').populate('subcategoryid')
+
+    
+    const category=await categorymodels.find({})
+    const subcategory=await subcategorymodels.find({}).populate('categoryid')
+    const single=await exsubcategorymodels.findById(id).populate('categoryid').populate('subcategoryid')
+    
     return res.render('exsubcategory/editexsubcat',{
-       single
+     category ,subcategory, single
     })
     
 } catch (error) {
     console.log(error);
     return false
+}
+}
+const updateexsubCategory=async(req, res)=>{
+try {
+    const {editid,category,subcategory,exsubcategory}=req.body
+    await exsubcategorymodels.findByIdAndUpdate(editid,{
+        categoryid:category,
+        subcategoryid:subcategory,
+        exsubcategory:exsubcategory,
+    })
+    return res.redirect('/exsubcategory/exsubcategortypage')
+    
+} catch (error) {
+    
+    console.log(error);
+    
 }
 }
 
@@ -103,6 +122,6 @@ const changstatus=async(req, res)=>{
 }
 
 module.exports={
-    exsubcategortypage,addexsubcategortypage,exsubaddCategory,exsubcategoryedit,exsubcategorydelete,changstatus
+    exsubcategortypage,addexsubcategortypage,exsubaddCategory,exsubcategoryedit,exsubcategorydelete,updateexsubCategory,changstatus
 
 }
