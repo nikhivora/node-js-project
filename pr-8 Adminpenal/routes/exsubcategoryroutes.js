@@ -2,7 +2,7 @@ const express=require('express')
 
 const routes=express.Router()
 
-const { exsubcategortypage, addexsubcategortypage, exsubaddCategory, exsubcategoryedit, exsubcategorydelete, changstatus, updateexsubCategory } = require('../controller/exsubcategoryocntroller')
+const { exsubcategortypage, addexsubcategortypage, exsubaddCategory, exsubcategoryedit, exsubcategorydelete, changstatus, updateexsubCategory, ajaxcategory } = require('../controller/exsubcategoryocntroller')
 
  routes.use('/exsubcategortypage',exsubcategortypage)
  routes.use('/addexsubcategortypage',addexsubcategortypage)
@@ -11,4 +11,5 @@ routes.get('/exsubcategoryedit',exsubcategoryedit)
 routes.get('/exsubcategorydelete',exsubcategorydelete)
 routes.post('/updateexsubCategory',updateexsubCategory)
 routes.get('/changstatus',changstatus)
+routes.get('/ajaxcategory',ajaxcategory)
  module.exports=routes

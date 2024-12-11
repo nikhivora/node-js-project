@@ -34,7 +34,7 @@ const exsubaddCategory=async(req, res)=>{
     try {
         const {category,subcategory,exsubcategory}=req.body;
         
-           await exsubcategorymodels.create({
+        let id=   await exsubcategorymodels.create({
             categoryid:category,subcategoryid:subcategory,
         exsubcategory:exsubcategory
         })
@@ -121,7 +121,25 @@ const changstatus=async(req, res)=>{
     }
 }
 
+const ajaxcategory=async(req, res)=>{
+try {
+ const id=req.query.id;
+
+ const category=await subcategorymodels.find({categoryid:id})
+return res.send({
+    success:true,
+    message:'hali gayu',
+    category
+})
+ 
+    
+} catch (error) {
+    console.log(error);
+    return false
+}
+}
+
 module.exports={
-    exsubcategortypage,addexsubcategortypage,exsubaddCategory,exsubcategoryedit,exsubcategorydelete,updateexsubCategory,changstatus
+    exsubcategortypage,addexsubcategortypage,exsubaddCategory,exsubcategoryedit,exsubcategorydelete,updateexsubCategory,changstatus,ajaxcategory
 
 }

@@ -55,7 +55,7 @@
 <select name="subcategory" id="" class="form-select">
   <option value="">-----select-option--</option>
   <%subcategory.map((cat)=>{ %>
-    <option value="<%= cat._id %>" <% if(cat?.subcategory== single?.subcategoryid?.subcategory){%> selected<% }%>>
+    <option value="<%= cat._id %>" <% if(cat.subcategory== single.subcategoryid.subcategory){%> selected<% }%>>
         <%= cat.subcategory %>
     </option>
     <% }) %>
