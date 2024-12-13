@@ -1,12 +1,25 @@
 const express=require('express')
-const {  productpage, addproduct, ajaxcategory } = require('../controller/productcontroller')
+const {  productpage, addproduct, ajaxcategory, insertrecord } = require('../controller/productcontroller')
 
 const routes=express.Router()
 
+const multer=require('multer')
 
-routes.get('/productpage',productpage)
-routes.get('/addproduct',addproduct)
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads')
+    },
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+      cb(null, file.fieldname + '-' + uniqueSuffix)
+    }
+  })
+  
+  const upload = multer({ storage: storage }).single('image')
 
-routes.get('/ajaxcategory',ajaxcategory)
+routes.get('/productpage',productpage);
+routes.get('/addproduct',addproduct);
+routes.post('/insertrecord',upload,insertrecord)
+routes.get('/ajaxcategory',ajaxcategory);
 
 module.exports=routes

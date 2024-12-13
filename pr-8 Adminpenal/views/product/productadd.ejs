@@ -33,7 +33,7 @@
     <!-- ========== title-wrapper end ========== -->
 
     <!-- ========== form-elements-wrapper start ========== -->
-    <form method="post" action="/exsubcategory/exsubaddCategory" class="form-elements-wrapper">
+    <form method="post" action="/product/insertrecord" enctype="multipart/form-data" class="form-elements-wrapper">
       <div class="row">
         <div class="col-lg-6">
           <!-- input style start -->
@@ -55,13 +55,24 @@
             
               </select><br>
               <label>ExtraSubcategoryName</label>
-               <select class="form-select">
+               <select name="exsubcategory" class="form-select" id="exsubcat">
                 <option value="">-----select-option--</option>
             
-              </select>
-            </div><br>
+              </select><br>
+              <label>product</label>
+              <input type="text" class="form-control" name="product" placeholder="product">
+            <br>
+              <label>Price</label>
+              <input type="number" class="form-control" name="price" placeholder="price">
+            <br>
+              <label>Description </label>
+              <input type="text" class="form-control" name="desc" placeholder="Description ">
+            <br>
+              <label>Image </label>
+              <input type="file" class="form-control" name="image" placeholder="image ">
+            </div>
             <button type="submit" class="btn btn-primary">
-              Add Sub Category
+              Add Producat
             </button>
           </div>
           <!-- ======= input switch style end ======= -->
@@ -107,6 +118,22 @@
   $.ajax ({
     type:"GET",
     url:`/product/ajaxcategory?id=${subcategory}`, 
+    success:function(res){
+      const subcategory=res.subcategory
+      console.log(subcategory);
+      
+      let tbl=""
+ tbl+=`<option value="">-----select-option--</option>`
+ subcategory.map((cat)=>{
+             tbl+=`
+              <option value=${cat._id} > ${cat.exsubcategory}</option>
+
+             `
+      })
+      document.getElementById("exsubcat").innerHTML=tbl
+      
+    }
+    
     })
   }
   

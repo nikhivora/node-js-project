@@ -11,11 +11,26 @@ const userschama=mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
     ref:"subcategory"
     },
-    exsubcategory:{
+    exsubcategoryid:{
           type:mongoose.Schema.Types.ObjectId,
-    ref:"Exsubcategory"
+        ref:"Exsubcategory"
     },
-
+    product:{
+    type:String,
+    require:true
+    },
+    price:{
+    type:Number,
+    require:true
+    },
+    desc:{
+    type:String,
+    require:true
+    },
+    image:{
+    type:String,
+    require:true
+    },
     status:{
         type:String,
        default:'deactive'
