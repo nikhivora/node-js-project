@@ -46,10 +46,7 @@ try {
     desc:desc,
     image:req.file.path
    })
-
-   
     return res.redirect('/product/addproduct')
-    
 } catch (error) {
    console.log(error);
     

@@ -44,6 +44,10 @@
                 <th scope="col"> Category </th>
                 <th scope="col">Sub Category </th>
                 <th scope="col">Ex Sub Category </th>
+                <th scope="col"> product </th>
+                <th scope="col">price </th>
+                <th scope="col">desc</th>
+                <th scope="col">image</th>
                 <th scope="col">action</th>
                 <th scope="col">Status</th>
               </tr>
@@ -55,6 +59,10 @@
                 <td><%=exsubcat.categoryid.category%></td>
                 <td><%=exsubcat.subcategoryid.subcategory%></td>
                 <td><%=exsubcat.exsubcategoryid.exsubcategory%></td>
+                <td><%=exsubcat.product%></td>
+                <td><%=exsubcat.price%></td>
+                <td><%=exsubcat.desc%></td>
+                <td><img src="<%=exsubcat.image%>" width="200px" alt="" srcset=""></td>
                 <td>
                   <a class="btn btn-primary" href="/exsubcategory/exsubcategoryedit?id=<%=exsubcat.id%>">edit</a>
                   <a class="btn btn-danger" href="/exsubcategory/exsubcategorydelete?id=<%=exsubcat.id%>">delete</a>
