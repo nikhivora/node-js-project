@@ -3,24 +3,21 @@ const categorymodels=require('../models/categorymodel')
 const subcategorymodels=require('../models/subcategorymodels')
 const exsubcategorymodels=require('../models/exsubcategorymodels')
 const productmodels=require('../models/productmoels')
+
+const fs=require('fs')
 const productpage=async(req, res)=>{
 
     try {
        
         const exsucategory=await productmodels.find({}).populate("categoryid").populate("subcategoryid").populate("exsubcategoryid")
-        console.log(exsucategory);
         
         return res.render('product/productview',{
             exsucategory
         })
-
     } catch (error) {
         console.log(error);
-        
     }
 }
-
-
 const addproduct=async (req, res)=>{
 try {
         const category=await categorymodels.find({})
@@ -28,10 +25,8 @@ try {
     return res.render('product/productadd',{
         category,subcategory
     })
-
 } catch (error) {
     console.log(error);
-    
 }
 }
 const insertrecord=async(req, res)=>{
@@ -53,10 +48,25 @@ try {
 }
 }
 
-const ajaxcategory=async(req,res)=>{
-
+const productdelete=async(req, res)=>{
     try {
+        const id=req.query.id
+        let single = await productmodels.findById(id)
+        fs.unlinkSync(single.image)
+
+        await productmodels.findByIdAndDelete(id)
+        console.log(id);
+        return res.redirect('/product/productpage')
+    } catch (error) {
+        console.log(error);
         
+    }
+}
+
+
+
+const ajaxcategory=async(req,res)=>{
+    try {
         const id=req.query.id    
         const subcategory=await exsubcategorymodels.find({subcategoryid:id})    
         return res.send({
@@ -64,12 +74,13 @@ const ajaxcategory=async(req,res)=>{
             message:'hali gayu',
             subcategory
         })
-        
+
     } catch (error) {
         console.log(error);
         return false
     }
+
 }
 module.exports={
-    productpage,addproduct,ajaxcategory,insertrecord
+    productpage,addproduct,ajaxcategory,insertrecord,productdelete
 }

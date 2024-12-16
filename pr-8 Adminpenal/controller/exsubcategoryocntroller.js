@@ -54,10 +54,11 @@ try {
     
     const category=await categorymodels.find({})
     const subcategory=await subcategorymodels.find({}).populate('categoryid')
+    const exsubcategory=await exsubcategorymodels.find({})
     const single=await exsubcategorymodels.findById(id).populate('categoryid').populate('subcategoryid')
     
     return res.render('exsubcategory/editexsubcat',{
-     category ,subcategory, single
+     category ,subcategory, single,exsubcategory
     })
     
 } catch (error) {

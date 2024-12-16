@@ -13,6 +13,7 @@ const cookieParser = require('cookie-parser');
 app.use(cookieParser())
 
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 constdb = require('./config/db')
 const passport = require('passport')
@@ -34,9 +35,8 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(passport.setUser);
-app.use(express.urlencoded())
 app.use('/', express.static(path.join(__dirname, 'public')))
-app.use('/', express.static(path.join(__dirname, 'uploads')))
+app.use(express.urlencoded())
 app.use('/', require('./routes/indexroutes'))
 app.listen(port, (err) => {
     if (err) {

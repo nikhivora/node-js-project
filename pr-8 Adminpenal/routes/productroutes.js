@@ -1,5 +1,5 @@
 const express=require('express')
-const {  productpage, addproduct, ajaxcategory, insertrecord } = require('../controller/productcontroller')
+const {  productpage, addproduct, ajaxcategory, insertrecord, productdelete } = require('../controller/productcontroller')
 
 const routes=express.Router()
 
@@ -20,6 +20,7 @@ const storage = multer.diskStorage({
 routes.get('/productpage',productpage);
 routes.get('/addproduct',addproduct);
 routes.post('/insertrecord',upload,insertrecord)
+routes.get('/productdelete',productdelete)
 routes.get('/ajaxcategory',ajaxcategory);
 
 module.exports=routes
