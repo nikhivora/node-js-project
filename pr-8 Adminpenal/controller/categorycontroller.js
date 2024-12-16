@@ -24,7 +24,7 @@ try {
 const viewcategotypage= async(req, res)=>{
 
     try {
-        let users=await categorymodels.find({})
+        let users=await categorymodels.find({status:'active'})
         return res.render('category/viewcategoty',{
             users
         })

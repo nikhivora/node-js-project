@@ -1,5 +1,5 @@
 const express=require('express')
-const {  productpage, addproduct, ajaxcategory, insertrecord, productdelete } = require('../controller/productcontroller')
+const {  productpage, addproduct, ajaxcategory, insertrecord, productdelete, productedit, updateproduct, changstatus } = require('../controller/productcontroller')
 
 const routes=express.Router()
 
@@ -21,6 +21,9 @@ routes.get('/productpage',productpage);
 routes.get('/addproduct',addproduct);
 routes.post('/insertrecord',upload,insertrecord)
 routes.get('/productdelete',productdelete)
+routes.get('/productedit',productedit)
+routes.post('/updateproduct',upload,updateproduct)
+routes.get('/changstatus',changstatus)
 routes.get('/ajaxcategory',ajaxcategory);
 
 module.exports=routes

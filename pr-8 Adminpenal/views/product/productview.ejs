@@ -38,7 +38,7 @@
       
           <table class="table">
             <thead>
-            
+           
               <tr>
                 <th scope="col">#</th>
                 <th scope="col"> Category </th>
@@ -66,15 +66,15 @@
                   <img src= " ../<%=exsubcat.image %>" width="100" />
                 </td>
                 <td>
-                  <a class="btn btn-primary" href="/exsubcategory/exsubcategoryedit?id=<%=exsubcat.id%>">edit</a>
+                  <a class="btn btn-primary" href="/product/productedit?id=<%=exsubcat.id%>">edit</a>
                   <a class="btn btn-danger" href="/product/productdelete?id=<%=exsubcat.id%>">delete</a>
                 </td>
                 <td>
                   <% if(exsubcat.status=="active"){%>
-                    <a href="/exsubcategory/changstatus?id=<%=exsubcat.id%>&status=<%= exsubcat.status%>" class="btn btn-success">Active</a>
+                    <a href="/product/changstatus?id=<%=exsubcat.id%>&status=<%= exsubcat.status%>" class="btn btn-success">Active</a>
 
                  <% }else{ %>
-                  <a href="/exsubcategory/changstatus?id=<%=exsubcat.id%>&status=<%= exsubcat.status%>" class="btn btn-warning">Deactive</a>
+                  <a href="/product/changstatus?id=<%=exsubcat.id%>&status=<%= exsubcat.status%>" class="btn btn-warning">Deactive</a>
                 <% }%>
                 </td>
 

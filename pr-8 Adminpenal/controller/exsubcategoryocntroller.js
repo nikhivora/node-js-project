@@ -17,8 +17,8 @@ try {
 }
 const addexsubcategortypage=async(req, res)=>{
 try {
-    const category=await categorymodels.find({})
-    const subcategory=await subcategorymodels.find({})
+    const category=await categorymodels.find({status:'active'})
+    const subcategory=await subcategorymodels.find({status:'active'})
     return res.render('exsubcategory/addexsubcat',{
         category,subcategory
     })
@@ -52,9 +52,9 @@ try {
     const id=req.query.id
 
     
-    const category=await categorymodels.find({})
-    const subcategory=await subcategorymodels.find({}).populate('categoryid')
-    const exsubcategory=await exsubcategorymodels.find({})
+    const category=await categorymodels.find({status:'active'})
+    const subcategory=await subcategorymodels.find({status:'active'})
+    const exsubcategory=await exsubcategorymodels.find({status:'active'})
     const single=await exsubcategorymodels.findById(id).populate('categoryid').populate('subcategoryid')
     
     return res.render('exsubcategory/editexsubcat',{
