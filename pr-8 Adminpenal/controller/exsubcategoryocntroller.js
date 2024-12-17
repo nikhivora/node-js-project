@@ -5,6 +5,7 @@ const exsubcategorymodels=require('../models/exsubcategorymodels')
 
 const exsubcategortypage=async(req, res)=>{
 try {
+    
     const exsucategory=await exsubcategorymodels.find({}).populate('categoryid').populate('subcategoryid')
     return res.render('exsubcategory/viewexsubcat',{
         exsucategory
