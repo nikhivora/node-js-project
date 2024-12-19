@@ -9,7 +9,7 @@ const productpage=async(req, res)=>{
 
     try {
        
-        const exsucategory=await productmodels.find({ status: 'active'}).populate("categoryid").populate("subcategoryid").populate("exsubcategoryid")
+        const exsucategory=await productmodels.find({}).populate("categoryid").populate("subcategoryid").populate("exsubcategoryid")
         
         return res.render('product/productview',{
             exsucategory

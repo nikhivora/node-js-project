@@ -3,17 +3,15 @@ const usermodels = require('../models/usermodels')
 
 const mailer = require('nodemailer')
 const registerpage = (req, res) => {
-  if (res.locals.users) {
+
   return res.render('res')
   }
-  return res.redirect('/')
-}
+
 const loginpage = (req, res) => {
-  if (res.locals.users) {
+
   return res.render('login')
   }
-   return res.redirect('/')
-}
+   
 const dashpage = (req, res) => {
   return res.render('dash')
 }

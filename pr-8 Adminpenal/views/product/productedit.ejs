@@ -116,7 +116,7 @@
  tbl+=`<option value="">-----select-option--</option>`
       category.map((cat)=>{
              tbl+=`
-              <option value=${cat._id} > ${cat.subcategory}</option>
+              <option value=${cat?._id} > ${cat?.subcategory}</option>
 
              `
       })
@@ -140,7 +140,7 @@
  tbl+=`<option value="">-----select-option--</option>`
  subcategory.map((cat)=>{
              tbl+=`
-              <option value=${cat._id} > ${cat.exsubcategory}</option>
+              <option value=${cat?._id} > ${cat?.exsubcategory}</option>
 
              `
       })

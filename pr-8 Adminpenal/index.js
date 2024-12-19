@@ -15,7 +15,8 @@ app.use(cookieParser())
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-constdb = require('./config/db')
+const db = require('./config/db')
+
 const passport = require('passport')
 
 const passportlocal = require('./config/paaportlocal')
@@ -27,7 +28,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: {
-        maxAge: 1000 * 60 * 60 * 24
+        maxAge: 1000*60*60*24
     }
 }))
 

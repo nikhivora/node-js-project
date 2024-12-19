@@ -16,6 +16,6 @@ const userschama=mongoose.Schema({
     },
 })
 
-const user=mongoose.model('passport-1',userschama)
+const user=mongoose.model('users',userschama)
 
 module.exports=user

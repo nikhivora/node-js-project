@@ -1,18 +1,13 @@
-const mongoose=require('mongoose')
-
-mongoose.connect('mongodb://localhost/blog-passport')
-
-
-const database=mongoose.connection
-
-
-database.on('connected',(err)=>{
-    if (err) {
-        console.log(err);   
-    }
-
-    console.log('db is connected');
-    
-})
-
-module.exports=database
+const mongoose = require("mongoose");
+const connectDB = async () => {
+  try {
+    const con = await mongoose.connect(
+      `mongodb+srv://nikhilvora:Nikhil@cluster0.bvfwl.mongodb.net/adminpenal`
+    );
+    console.log(`mongodb successfully connect`);
+  } catch (err) {
+    console.error(err);
+    return false;
+  }
+};
+module.exports = connectDB();

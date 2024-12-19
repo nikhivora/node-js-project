@@ -52,8 +52,8 @@
               <% subcategory.map((subcat,i)=>{%>
                 <tr>
                   <td> <%= ++i%> </td>
-                <td><%=subcat.categoryid.category%></td>
-                <td><%=subcat.subcategory%></td>
+                <td><%=subcat?.categoryid?.category%></td>
+                <td><%=subcat?.subcategory%></td>
                 <td>
                   <a class="btn btn-primary" href="/subcategory/subcategoryedit?id=<%=subcat.id%>">edit</a>
                   <a class="btn btn-danger" href="/subcategory/subcategorydelete?id=<%=subcat.id%>">delete</a>
